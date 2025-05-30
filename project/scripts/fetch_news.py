@@ -1,7 +1,7 @@
 import json
 import requests
 import os
-from config import API_KEY
+from .config import API_KEY
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 NEWS_FILE = os.path.join(DATA_DIR, 'news_articles.json')
