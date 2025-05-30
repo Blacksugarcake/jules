@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top News Headlines</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .news-item {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        .news-item h2 {
+            margin-top: 0;
+            font-size: 1.2em;
+            color: #0056b3;
+        }
+        .news-item p {
+            font-size: 0.9em;
+            line-height: 1.6;
+            color: #555;
+        }
+        .news-item a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .news-item a:hover {
+            text-decoration: underline;
+        }
+        #error-message {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Top 10 News Headlines</h1>
+        <div id="news-container">
+            <!-- News articles will be loaded here -->
+        </div>
+        <p id="error-message" style="display:none;">Failed to load news articles.</p>
+    </div>
+
+    <script>
+        async function fetchNews() {
+            const newsContainer = document.getElementById('news-container');
+            const errorMessage = document.getElementById('error-message');
+            try {
+                // Adjust the path to where the data file will be served.
+                // For local testing, this assumes index.html is in 'project/web/'
+                // and 'news_articles.json' is in 'project/data/'.
+                // When deploying, this path might need to be relative to the server root.
+                const response = await fetch('../data/news_articles.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const articles = await response.json();
+
+                if (articles.length === 0) {
+                    newsContainer.innerHTML = '<p>No news articles found.</p>';
+                    return;
+                }
+
+                articles.forEach(article => {
+                    const newsItem = document.createElement('div');
+                    newsItem.classList.add('news-item');
+
+                    const title = document.createElement('h2');
+                    title.textContent = article.title || 'No Title';
+
+                    const summary = document.createElement('p');
+                    summary.textContent = article.summary || 'No Summary Available.';
+
+                    const link = document.createElement('a');
+                    link.href = article.url || '#';
+                    link.textContent = 'Read more';
+                    link.target = '_blank'; // Open in new tab
+
+                    newsItem.appendChild(title);
+                    newsItem.appendChild(summary);
+                    newsItem.appendChild(link);
+                    newsContainer.appendChild(newsItem);
+                });
+            } catch (error) {
+                console.error('Error fetching news:', error);
+                errorMessage.style.display = 'block';
+                newsContainer.innerHTML = ''; // Clear any partial content
+            }
+        }
+
+        fetchNews();
+    </script>
+</body>
+</html>
