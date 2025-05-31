@@ -51,15 +51,35 @@ README.md                   # This file
     (Depending on your Python installation, you might need to use `pip3` instead of `pip`.)
 
 3.  **Set Up API Key**
-    You need to provide your NewsAPI key for the script to work.
-    - Create a file named `config.py` inside the `project/scripts/` directory.
-    - Add your API key to this file as follows:
-      ```python
-      # project/scripts/config.py
-      API_KEY = "YOUR_ACTUAL_API_KEY"
-      ```
-    - Replace `"YOUR_ACTUAL_API_KEY"` with the API key you obtained from NewsAPI.
-    *Note: `config.py` is included in `.gitignore` to prevent accidental commitment of your API key.*
+
+    ### Create the Configuration File (`config.py`)
+    The `fetch_news.py` script requires an API key from NewsAPI to function. You need to store this key in a file named `config.py` inside the `project/scripts/` directory.
+
+    1. **Navigate to the `scripts` directory:**
+       If you are in the repository root, and your project files are in a `project` subdirectory:
+       ```bash
+       cd project/scripts
+       ```
+       If your `scripts` folder is directly in the repository root, navigate there:
+       ```bash
+       cd scripts
+       ```
+
+    2. **Create a new file named `config.py`**.
+       You can do this using a text editor or a command like `touch config.py` (on Linux/macOS) or by right-clicking in your file explorer and selecting 'New > Text Document' then renaming it to `config.py` (on Windows, ensuring file extensions are visible).
+
+    3. **Open `config.py` in a text editor.**
+
+    4. **Add the following line to the file:**
+       ```python
+       API_KEY = "YOUR_API_KEY_HERE"
+       ```
+
+    5. **Replace `"YOUR_API_KEY_HERE"` with your actual NewsAPI key.** Make sure the key is enclosed in quotes.
+
+    6. **Save the `config.py` file.**
+
+    **Important:** This `config.py` file is intentionally not tracked by Git (it's listed in `.gitignore`) to prevent your API key from being accidentally shared. Do not remove it from `.gitignore` or commit this file.
 
 ## Running the Project
 
