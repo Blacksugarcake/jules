@@ -66,18 +66,19 @@ README.md                   # This file
 1.  **Fetch News Articles Manually**
     To fetch the latest news articles, run the `fetch_news.py` script. The articles will be saved in `project/data/news_articles.json`.
 
-    The recommended way is to run the script as a module from the project's root directory:
-    ```bash
-    # Navigate to the project's root directory (e.g., where the 'scripts' and 'web' folders are)
-    cd project 
-    python -m scripts.fetch_news
-    ```
-    Alternatively, you can navigate into the `scripts` directory and run it directly:
-    ```bash
-    cd project/scripts
-    python fetch_news.py
-    ```
-    The module approach (`python -m scripts.fetch_news`) is generally more robust for handling imports correctly, especially in larger projects. You should see a confirmation message if the news is fetched and saved successfully.
+    The **only recommended way** to run this script is as a Python module from the `project` directory (the parent directory of `scripts`). This ensures that imports within the script work correctly.
+
+    - Navigate to the `project` directory (e.g., the directory containing the `scripts`, `data`, and `web` folders):
+      ```bash
+      # If you are in the repository root, and your project files are in a 'project' subdirectory:
+      cd project
+      # If your 'scripts', 'data', 'web' folders are directly in the repository root, you are already there.
+      ```
+    - Then, execute the script as a module:
+      ```bash
+      python -m scripts.fetch_news
+      ```
+    You should see a confirmation message if the news is fetched and saved successfully.
 
 2.  **View the Webpage**
     Open the `project/web/index.html` file in your web browser.
