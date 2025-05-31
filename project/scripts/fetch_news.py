@@ -28,7 +28,8 @@ def save_articles_to_json(articles_data):
         articles_to_store.append({
             'title': article.get('title'),
             'url': article.get('url'),
-            'summary': article.get('description') # NewsAPI uses 'description' for summary
+            'summary': article.get('description'), # NewsAPI uses 'description' for summary
+            'urlToImage': article.get('urlToImage')
         })
 
     try:
