@@ -7,8 +7,8 @@ This project fetches the top 10 news articles from the US using the NewsAPI and 
 ## Features
 
 - Fetches top 10 news headlines from NewsAPI.
-- Stores news data (title, URL, summary, image URL) in a JSON file.
-- Displays news articles on a clean, responsive HTML page, including images (when available).
+- Stores news data (title, URL, summary) in a JSON file.
+- Displays news articles on a clean, responsive HTML page.
 - Includes instructions for scheduling daily updates.
 
 ## Project Structure
